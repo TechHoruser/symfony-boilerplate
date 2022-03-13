@@ -1,0 +1,4 @@
+parameters:
+    app.secret: '%env(resolve:APP_SECRET)%'
+    app.date_format: 'Y-m-d'
+    app.search_dates_separator: '/'

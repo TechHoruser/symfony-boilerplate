@@ -1,0 +1,9 @@
+App\Domain\User\Entity\User:
+  user_admin:
+    __construct: false
+    uuid: <uuid3()>
+    email: admin@boilerplate.com
+  user_developer:
+    __construct: false
+    uuid: <uuid3()>
+    email: developer@boilerplate.com

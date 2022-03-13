@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity repository-class="App\Infrastructure\Persistence\Doctrine\Repository\User\UserRepository" name="App\Domain\User\Entity\User" table="users">
+        <id name="uuid" type="guid" column="uuid"/>
+
+        <field name="email" column="email"/>
+        <field name="name" column="name"/>
+
+        <field name="password" column="password"/>
+
+        <field name="createdAt" type="datetime" column="created_at"/>
+        <field name="updatedAt" type="datetime" column="updated_at" nullable="true"/>
+
+        <indexes>
+            <index columns="created_at"/>
+            <index columns="updated_at"/>
+        </indexes>
+    </entity>
+</doctrine-mapping>

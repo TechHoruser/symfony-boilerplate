@@ -1,0 +1,32 @@
+FROM php:8.1-fpm-alpine
+
+RUN apk update \
+    && apk add  --no-cache bash git postgresql-dev curl libmcrypt libmcrypt-dev openssh-client icu-dev \
+    libxml2-dev freetype-dev libpng-dev libzip-dev libjpeg-turbo-dev g++ make autoconf \
+    && docker-php-source extract
+
+RUN pecl install xdebug redis \
+    && docker-php-ext-enable xdebug redis \
+    && docker-php-source delete
+
+RUN docker-php-ext-install pdo pdo_pgsql zip soap intl
+
+RUN echo "xdebug.mode=debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.start_with_request=on" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.client_port=9003" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.remote_handler=dbgp" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.discover_client_host=0" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.log_level=0" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.client_host=172.17.0.1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+    && rm -rf /tmp/*
+
+CMD ["php-fpm", "-F"]
+
+WORKDIR /var/www/html
+
+RUN mkdir -p /var/www/html/var/cache && chmod 777 /var/www/html/var/cache
+
+EXPOSE 9003
+
