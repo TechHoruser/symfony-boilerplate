@@ -4361,16 +4361,16 @@
         },
         {
             "name": "symfony/messenger",
-            "version": "v6.0.2",
+            "version": "v6.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/messenger.git",
-                "reference": "d06af83ca257e905e43d341ecabc031efb85ead6"
+                "reference": "3d1b9ce0083892f4cab249cbf9f677a9337cc350"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/messenger/zipball/d06af83ca257e905e43d341ecabc031efb85ead6",
-                "reference": "d06af83ca257e905e43d341ecabc031efb85ead6",
+                "url": "https://api.github.com/repos/symfony/messenger/zipball/3d1b9ce0083892f4cab249cbf9f677a9337cc350",
+                "reference": "3d1b9ce0083892f4cab249cbf9f677a9337cc350",
                 "shasum": ""
             },
             "require": {
@@ -4426,7 +4426,7 @@
             "description": "Helps applications send and receive messages to/from other applications or via message queues",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/messenger/tree/v6.0.2"
+                "source": "https://github.com/symfony/messenger/tree/v6.0.3"
             },
             "funding": [
                 {
@@ -4442,7 +4442,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-12-16T22:05:41+00:00"
+            "time": "2022-01-12T18:59:56+00:00"
         },
         {
             "name": "symfony/monolog-bridge",
