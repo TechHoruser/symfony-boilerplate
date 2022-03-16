@@ -14,7 +14,7 @@ use Doctrine\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-class Users extends AbstractFixture implements DependentFixtureInterface
+class Users extends AbstractFixture
 {
     public const PREFIX_REFERENCE = "user-%s-%s";
 
@@ -25,11 +25,6 @@ class Users extends AbstractFixture implements DependentFixtureInterface
         private UserPasswordHasherInterface $passwordHasher,
     ) {
         parent::__construct($fixtureValues, $securityHelper, $fakerFactory);
-    }
-
-    public function getDependencies(): array
-    {
-        return [];
     }
 
     public function load(ObjectManager $manager): void
