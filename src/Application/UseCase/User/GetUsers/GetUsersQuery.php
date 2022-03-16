@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Application\UseCase\User\GetUsers;
 
 use App\Application\Shared\Query\QueryInterface;
-use App\Domain\Shared\Entities\PaginationProperties;
+use App\Domain\Shared\Entity\PaginationProperties;
 
 class GetUsersQuery implements QueryInterface
 {

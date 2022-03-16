@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\UI\Http\Rest\Controller;
 
-use App\Domain\Shared\Entities\PaginationProperties;
+use App\Domain\Shared\Entity\PaginationProperties;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
