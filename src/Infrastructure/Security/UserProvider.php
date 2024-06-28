@@ -14,7 +14,8 @@ class UserProvider implements PayloadAwareUserProviderInterface
     public function __construct(
         private UserRepository $userRepository,
         private RequestStack $requestStack,
-    ) {}
+    ) {
+    }
 
     public function loadUserByUsernameAndPayload(string $username, array $payload)
     {
@@ -36,12 +37,12 @@ class UserProvider implements PayloadAwareUserProviderInterface
         return $this->cache[$username] = User::createFromUser($user);
     }
 
-    public function refreshUser(UserInterface $user)
+    public function refreshUser(UserInterface $user): UserInterface
     {
         return $user;
     }
 
-    public function supportsClass(string $class)
+    public function supportsClass(string $class): bool
     {
         return User::class === $class;
     }

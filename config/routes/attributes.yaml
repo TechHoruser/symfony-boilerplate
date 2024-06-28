@@ -1,0 +1,9 @@
+controllers:
+    resource: 
+        path: ../../src/UI/Http/Rest/Controller/
+        namespace: App\UI\Http\Rest\Controller
+    type: attribute
+
+kernel:
+    resource: ../../src/Kernel.php
+    type: attribute

@@ -7,10 +7,9 @@ namespace App\UI\Http\Rest\Controller\Users;
 use App\Application\UseCase\User\GetUsers\GetUsersQuery;
 use App\UI\Http\Rest\Controller\AbstractQueryController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Attribute\Route;
 
 /**
- * @Symfony\Component\Routing\Annotation\Route ("/user", methods={"GET"})
- *
  * @OpenApi\Annotations\Get (
  *     path="/user",
  *     summary="Get Users",
@@ -22,14 +21,17 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  *     )
  * )
  */
+#[Route('/user', methods: ['GET'])]
 class GetUsersController extends AbstractQueryController
 {
     public function __invoke(): JsonResponse
     {
-        $results = $this->dispatch(new GetUsersQuery(
-            $this->generatePaginationPropertiesByQueryParams(),
-            $this->request->query->all('filters')
-        ));
+        $results = $this->dispatch(
+            new GetUsersQuery(
+                $this->generatePaginationPropertiesByQueryParams(),
+                $this->request->query->all('filters')
+            )
+        );
 
         return new JsonResponse($this->normalizer->normalize($results));
     }

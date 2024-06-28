@@ -1,9 +1,10 @@
-FROM php:8.1-fpm-alpine
+FROM php:8.2-fpm-alpine
 
 RUN apk update \
     && apk add  --no-cache bash git postgresql-dev curl libmcrypt libmcrypt-dev openssh-client icu-dev \
     libxml2-dev freetype-dev libpng-dev libzip-dev libjpeg-turbo-dev g++ make autoconf \
-    && docker-php-source extract
+    && docker-php-source extract \
+    && apk add --update linux-headers
 
 RUN pecl install xdebug redis \
     && docker-php-ext-enable xdebug redis \
@@ -22,6 +23,9 @@ RUN echo "xdebug.mode=debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && rm -rf /tmp/*
 
+RUN mkdir -p /var/www/html/var/cache && chmod 777 /var/www/html/var/cache \
+    && mkdir -p /var/www/html/var/log && chmod 777 /var/www/html/var/log
+
 CMD ["php-fpm", "-F"]
 
 WORKDIR /var/www/html
@@ -29,4 +33,3 @@ WORKDIR /var/www/html
 RUN mkdir -p /var/www/html/var/cache && chmod 777 /var/www/html/var/cache
 
 EXPOSE 9003
-

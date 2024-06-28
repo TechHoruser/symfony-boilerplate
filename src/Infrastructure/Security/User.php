@@ -33,7 +33,9 @@ class User extends \App\Domain\User\Entity\User implements JWTUserInterface, Pas
         return [];
     }
 
-    public function eraseCredentials() {}
+    public function eraseCredentials(): void
+    {
+    }
 
     public function getUserIdentifier(): string
     {
