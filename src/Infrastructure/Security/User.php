@@ -24,7 +24,6 @@ class User extends \App\Domain\User\Entity\User implements JWTUserInterface, Pas
             $payload['email'],
             null,
             null,
-            $payload['name']
         );
     }
 

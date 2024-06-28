@@ -3,13 +3,9 @@
 namespace App\Tests\Integration\Resources\FixturesPhp;
 
 use App\Application\Shared\Helper\SecurityHelperInterface;
-use App\Domain\Tenant\Entity\Tenant;
-use App\Domain\User\Entity\Permission;
 use App\Domain\User\Entity\User;
-use App\Domain\User\Enums\PermissionType;
 use App\Tests\Integration\Resources\Config\FixtureValuesInterface;
 use App\Tests\Integration\Resources\Factory\FakerFactoryInterface;
-use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -35,10 +31,13 @@ class Users extends AbstractFixture
             null,
             'Admin User',
         );
-        $adminUser->setPassword($this->passwordHasher->hashPassword(
-            \App\Infrastructure\Security\User::createFromUser($adminUser),
-            $this->fixtureValues->getCommonUserPassword(),
-        ));
+        $adminUser->setPassword(
+            $this->passwordHasher->hashPassword(
+                \App\Infrastructure\Security\User::createFromUser($adminUser),
+                $this->fixtureValues->getCommonUserPassword(),
+            )
+        );
+        $adminUser->setCreatedAt(new \DateTime());
 
         $manager->persist($adminUser);
         $manager->flush();

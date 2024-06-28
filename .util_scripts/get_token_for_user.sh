@@ -18,7 +18,7 @@ done
 [ "$USER_TYPE" = "developer" ] && TMP_EMAIL='developer@boilerplate.com'
 [ -z "$EMAIL" ] && EMAIL="$TMP_EMAIL"
 
-CURL_COMMAND="curl -X POST -H \"Content-Type: application/json\" http://localhost:8080/login_check -d '{\"username\":\"$EMAIL\",\"password\":\"password\"}'"
+CURL_COMMAND="curl -X POST -H \"Content-Type: application/json\" http://nginx:80/login_check -d '{\"username\":\"$EMAIL\",\"password\":\"password\"}'"
 
 [ -n "${PRINT_CURL}" ] && echo $CURL_COMMAND
 

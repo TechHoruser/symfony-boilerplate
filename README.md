@@ -91,7 +91,7 @@ bin/console doctrine:migrations:migrate
 ### Clear Database schema
 
 ```shell
-bin/console doctrine:database:drop
+bin/console doctrine:database:drop --force
 bin/console doctrine:database:create
 ```
 
@@ -106,4 +106,4 @@ bin/console doctrine:fixtures:load --env=dev
 
 > You can create DB and add admin and developer users with `docker-compose exec php ./.util_scripts/recreate_db.sh dev`
 
-> And for get JWT token use `./.util_scripts/get_token_for_user.sh`
+> And for get JWT token use `docker-compose exec php ./.util_scripts/get_token_for_user.sh`
